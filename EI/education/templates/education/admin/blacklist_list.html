@@ -1,0 +1,61 @@
+{% extends 'education/admin/admin_navbar.html' %} 
+ 
+{% block body %} 
+
+<section>
+    <div class="container ">
+      <div class="row d-flex justify-content-center align-items-center p-4">
+        <div class="col-md-12 col-xl-10">
+  
+          <div class="card">
+            <div class="card-header p-3">
+              <h5 class="mb-0">Black List</h5>
+            </div>
+            <div class="card-body" data-mdb-perfect-scrollbar="true" style="position: relative;">
+  
+              <table class="table mb-0">
+                <thead>
+                  <tr>
+                    <th scope="col">Student</th>
+                    <th scope="col">Teacher Rating</th>
+                    <th scope="col">Created At</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for blacklist in blacklist_list %}
+                    <tr class="fw-normal">
+                        
+                            <th>
+                                
+                                <span class="ms-2">{{ blacklist.student}}</span>
+                              </th>
+                              <td class="align-middle">
+                                  <span>{{ blacklist.teacher_rating }}</span>
+                              </td>
+      
+                              <td class="align-middle">
+                                <span>{{ blacklist.created_at }}</span>
+                              </td>
+                              
+    
+                       
+                        
+                      </tr>
+                      {% empty %} 
+                        <tr> 
+                            <td colspan="3">No students in blacklist.</td> 
+                        </tr> 
+                    {% endfor %} 
+ 
+                </tbody>
+              </table>
+  
+            </div>
+            
+          </div>
+  
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

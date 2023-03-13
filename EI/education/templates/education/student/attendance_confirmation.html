@@ -1,0 +1,14 @@
+{% extends 'education/student/student_navbar.html' %}
+
+{% block body %}
+ <div class="container p-4">
+    <h1>Attendance Confirmation</h1>
+    <p>You have successfully submitted attendance for:</p>
+    <ul>
+      <li>Student: {{ attendance.student.full_name }}</li>
+      <li>Course: {{ attendance.course.name }}</li>
+      <li>Date: {{ attendance.date }}</li>
+      <li>Attendance: {% if attendance.present %}Present{% else %}Absent{% endif %}</li>
+    </ul>
+ </div>
+{% endblock %}

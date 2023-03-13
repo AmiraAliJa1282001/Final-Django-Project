@@ -1,0 +1,112 @@
+{% extends 'education/teacher/teacher_navbar.html' %}
+{% load static %}
+{% block title %} Admin Panel {% endblock %}
+{% block css %}
+{% endblock %}
+{% block body %}
+<section>
+    <div class="container">
+        <div class="row p-5 justify-content-center">
+            <div class="">
+                <h2 class="brown-bg p-1 dark-blue col-md-6 mb-5">{{ object.name}} Course Information</h2>
+                <div class="row">
+                    <div class="col-md-3">
+                        <p class=" p-1 dark-blue fw-bold  hed-color ">Course Title</p>
+                    </div>
+                    <div class="col-md-8">
+                        <p class=" p-1 dark-blue col-md-8">{{ object.name }}</p>
+                        
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <p class=" p-1 dark-blue fw-bold  hed-color "> Course Content Description</p>
+                    </div>
+                    <div class="col-md-8">
+                        <p class=" p-1 dark-blue col-md-8">{{object.description}}</p>
+                        
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <p class=" p-1 dark-blue fw-bold  hed-color "> Start Date</p>
+                    </div>
+                    <div class="col-md-8">
+                        <p class=" p-1 dark-blue col-md-8">{{ object.start_date }}</p>
+                        
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <p class=" p-1 dark-blue fw-bold  hed-color "> End Date</p>
+                    </div>
+                    <div class="col-md-8">
+                        <p class=" p-1 dark-blue col-md-8">{{object.end_date }}</p>
+                        
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <p class=" p-1 dark-blue fw-bold  hed-color "> Course Teacher</p>
+                    </div>
+                    <div class="col-md-8">
+                       
+                            <p class=" p-1 dark-blue col-md-8">{{ object.teacher.full_name }}</p>
+                        
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <p class=" p-1 dark-blue fw-bold  hed-color "> Course Students</p>
+                    </div>
+                    <div class="col-md-8">
+                        <ul>
+                            {% for student in object.students.all %}
+                                <li>
+                                    
+                                           <a href="{% url 'add_to_blacklist' student.id  object.id%}"> {{ student.full_name }}</a>
+                                
+                                    
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                <a class="btn brown-bg dark-blue" href="{% url 'view_attendance' object.id %}">View Attendance</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container">
+        <div class="row p-5 justify-content-center">
+            <div class="row">
+                <h2 class="brown-bg p-1 dark-blue col-md-6 mb-5">Tasks </h2>
+                    <div class="col-md-3">
+                        <a class="btn brown-bg dark-blue" href="{% url 'create_task' object.id %}">Add Task</a>
+                    </div>
+            </div>
+
+            <div class="row">
+                {% for task in tasks %}
+                  <div class="col-md-6">
+                    <div class="card p-3 m-2">
+                        <h4>Task {{ forloop.counter }}: {{ task.description }}</h4>
+                        <p>Deadline: {{ task.deadline }}</p>
+                        <ul>
+                            {% for submission in task.submissions.all %}
+                                <li>{{ submission.student.full_name }} submitted a file  {{ submission.created_at|date:'F j, Y, g:i a' }}</li>
+                            {% empty %}
+                                <li>No submissions yet</li>
+                            {% endfor %}
+                        </ul>
+                        <a href="{% url 'task_detail' task.pk %}" class="btn hed-color">View Details</a>
+                    </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

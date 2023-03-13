@@ -1,0 +1,21 @@
+{% extends 'education/admin/admin_navbar.html' %}
+{% load static %}
+{% block title %} Admin Panel {% endblock %}
+{% block css %}
+{% endblock %}
+{% block body %}
+<section>
+    <div class="container">
+        <div class="row p-5 justify-content-center">
+            <div class="">
+                <h2 class="brown-bg p-1 dark-blue col-md-6 mb-5">Add Course</h2>
+                <form method="post" enctype="multipart/form-data">{% csrf_token %}
+                    {{ form.as_p }}
+                    <input class="btn brown-bg dark-blue" type="submit" value="Add">
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

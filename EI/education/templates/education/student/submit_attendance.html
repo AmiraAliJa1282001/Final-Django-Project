@@ -1,0 +1,17 @@
+{% extends 'education/student/student_navbar.html' %}
+
+{% block body %}
+  <div class="container">
+    <h1>Submit Attendance</h1>
+    <p>Student: {{ student.full_name }}</p>
+    <p>Course: {{ course.name }}</p>
+
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <input type="hidden" name="student_id" value="{{ student.id }}">
+      <input type="hidden" name="course_id" value="{{ course.id }}">
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+{% endblock %}

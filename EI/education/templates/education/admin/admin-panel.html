@@ -1,0 +1,115 @@
+{% extends 'education/admin/admin_navbar.html' %}
+{% load static %}
+{% block title %} Admin Panel {% endblock %}
+{% block css %}
+{% endblock %}
+{% block body %}
+<section>
+    <div class="container">
+        <div class="row p-5 justify-content-center">
+            <div class="">
+                <h2 class="brown-bg p-1 dark-blue col-md-6 mb-5">{{ instituation.name }} Information</h2>
+                <div class="row">
+                    <div class="col-md-2">
+                        <p class=" p-1 dark-blue fw-bold  hed-color "> Name</p>
+                    </div>
+                    <div class="col-md-8">
+                        <p class=" p-1 dark-blue col-md-8">{{ instituation.name }}</p>
+                        
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        <p class=" p-1 dark-blue fw-bold  hed-color "> Home Title</p>
+                    </div>
+                    <div class="col-md-8">
+                        <p class=" p-1 dark-blue col-md-8">{{ instituation.home_title }}</p>
+                        
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        <p class=" p-1 dark-blue fw-bold  hed-color "> Home Description</p>
+                    </div>
+                    <div class="col-md-8">
+                        <p class=" p-1 dark-blue col-md-8">{{ instituation.home_description }}</p>
+                        
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        <p class=" p-1 dark-blue fw-bold  hed-color "> Mission</p>
+                    </div>
+                    <div class="col-md-8">
+                        <p class=" p-1 dark-blue col-md-8">{{ instituation.mission }}</p>
+                        
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        <p class=" p-1 dark-blue fw-bold  hed-color "> About us</p>
+                    </div>
+                    <div class="col-md-8">
+                        <p class=" p-1 dark-blue col-md-8">{{ instituation.about_us }}</p>
+                        
+                    </div>
+                </div>
+                
+                    <a class="btn brown-bg dark-blue" href="{% url 'update-instituation' instituation.id %}" role="button">Update</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container">
+        <div class="row p-5 justify-content-center">
+            <div class="">
+                <h2 class="brown-bg p-1 dark-blue col-md-6 mb-5">Our Programs</h2>
+                <table class="table mb-0">
+                    <thead>
+                      <tr>
+                        <th scope="col">Image</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Actions</th>
+                        
+                      </tr>
+                    </thead>
+                    <tbody>
+                        {% for program in programs %}
+                        <tr class="fw-normal">
+                                <th>
+                                    <img src="{{ program.get_photo_url }}"
+                                      class="shadow-1-strong " alt="avatar 1"
+                                      style="width: 100px; height: 100px;">
+                                    
+                                  </th>
+                                  <td class="align-middle">
+                                      <span>{{ program.title }}</span>
+                                  </td>
+          
+                                  <td class="align-middle">
+                                    <span>{{ program.description }}</span>
+                                  </td>
+                                  
+                            </a>
+                            <td class="align-middle">
+                              <a class="btn btn-outline-danger dark-blue" href="{% url 'program-delete' program.id %}" data-mdb-toggle="tooltip" title="Remove">delete </a>
+                                  <a class="btn brown-bg dark-blue" href="{% url 'program-edit' program.id %}"> Edit</a>
+                            </td>
+                          </tr>
+                        {% endfor %} 
+                        <a class="btn brown-bg dark-blue" href="{% url 'add-program'%}" role="button">Add Program</a>
+     
+                    </tbody>
+                  </table>
+      
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+

@@ -1,0 +1,67 @@
+{% extends 'education/teacher/teacher_navbar.html' %}
+
+{% block body %}
+    <div class="container p-4">
+        <h1>Attendance for {{ course.name }}</h1>
+    <!-- <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Student</th>
+                <th>Present</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for attendance_record in attendance_records %}
+                <tr>
+                    <td>{{ attendance_record.date }}</td>
+                    <td>{{ attendance_record.student.full_name }}</td>
+                    <td>{% if attendance_record.present %}Present{% else %}Absent{% endif %}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table> -->
+    <section>
+        <div class="container ">
+          <div class="row d-flex justify-content-center align-items-center p-4">
+            <div class="col-md-12 col-xl-10">
+      
+              <div class="card">
+                <div class="card-header p-3">
+                  <h5 class="mb-0">Course List</h5>
+                </div>
+                <div class="card-body" data-mdb-perfect-scrollbar="true" style="position: relative;">
+      
+                  <table class="table mb-0">
+                    <thead>
+                      <tr>
+                        <th scope="col">Date</th>
+                        <th scope="col">Student</th>
+                        <th scope="col">Present</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        {% for attendance_record in attendance_records %}
+                        <tr class="fw-normal">
+                            
+                                <th><span class="ms-2">{{ attendance_record.date }}</span></th>
+                                <td class="align-middle"><span>{{ attendance_record.student.full_name }}</span></td>
+                                <td class="align-middle"><span>{% if attendance_record.present %}Present{% else %}Absent{% endif %}</span></td>
+                        </tr>
+                            
+                        {% endfor %} 
+     
+                    </tbody>
+                  </table>
+      
+                </div>
+                
+              </div>
+      
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+{% endblock %}

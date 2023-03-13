@@ -1,0 +1,15 @@
+{% extends 'education/teacher/teacher_navbar.html' %} 
+{% block body %} 
+    <div class="container p-4"> 
+        <div style="width:50%; margin: 0 auto;"> 
+<h1>Add Student to Blacklist</h1> 
+<form method="post" > 
+  {% csrf_token %} 
+  <label for="teacher_rating">Teacher Rating:</label> 
+  <input type="number" name="teacher_rating" id="teacher_rating" min="0" max="10" required> 
+  <button type="submit">Add to Blacklist</button> 
+</form> 
+</div> 
+ 
+</div> 
+{% endblock %}

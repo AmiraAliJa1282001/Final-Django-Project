@@ -1,0 +1,104 @@
+{% extends 'basic.html' %}
+{% load static %}
+{% block title %} Educational Instituation {% endblock %}
+{% block css %}
+<style>
+    .hero{
+        background-image: url('{% static 'images/backg1.jpg' %}');
+    }
+
+</style>
+{% endblock %}
+{% block body %}
+<div class="hero" id="hero" >
+    <div class="p-4 col-md-8 ">
+        <div class="container py-3 ">
+        <h1 class="display-3 fw-bold  hed-color text-center"> {{ instituation.home_title }}</h1><br><br>
+        <p class="col-lg-8 fs-4  lead we-are text-center text-justify" style="margin: 0 auto;">{{ instituation.home_description }}</p>
+        </div>
+        <br>
+    </div>
+</div>
+<section class="p-6 py-lg-3 section-bg" id="about-us">
+    <div class="container">
+        <div class="text-center p-5">
+            <h3 class="dark-blue display-6 fw-bold border-bottom-head">About Us</h3>
+        </div>
+        
+        <div class="row about-us-content justify-content-evenly">
+            <div class="col-lg-5 ">
+                <h4 class="dark-blue display-6 "> Our Vission</h4>
+                <div class="vission">
+                    <p class="dark-blue p-4 text-justify">{{ instituation.about_us }}
+                        <br>
+                        <br>
+                        <a class="btn brown-bg btn-md dark-blue" href="#contact-us" role="button">Get In Touch</a>
+                    </p>
+                    
+                </div>
+            </div>
+            <div class="col-lg-5  ">
+                <div class="mission">
+                    <div class="about-us-image">
+                        <img class="img-fluid" src="{% static 'images/about-us.jpg' %}" alt="" srcset="" width="100%">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="p-6 py-lg-3 section-bg" id="our-program">
+    <div class="container">
+        <div class="text-center p-5">
+            <h3 class="dark-blue display-6 fw-bold border-bottom-head">Our Programms</h3>
+        </div>
+        
+            <div class="card-deck row justify-content-evenly">
+                {% for program in programs %}
+                
+                  <div class="card  text-white col-lg-3 col-sm-7 section-bg m-1 " style="border: none; margin: 15px;">
+                    
+                        <img class="card-img" src="{{program.get_photo_url }}" alt="Card image" height="100%" width="100%" style="height: 100%;">
+                        
+                        <div class="card-img-overlay p-5 program-card-overlay" >
+                            <h3 class="card-title text-large hed-color ">{{ program.title }}</h3>
+                            <br>
+                            <a class="btn brown-bg dark-blue" href="{% url 'programms-detail' program.id %}" role="button">Learn more</a>
+                        </div>
+                    
+                  </div>
+                {% endfor %} 
+    </div>
+</section>
+<section class="p-5 section-bg" id="contact-us">
+    <div class="container">
+        <div class="text-center p-5">
+            <h3 class="dark-blue display-6 fw-bold border-bottom-head">Contact us</h3>
+        </div>
+        <div class="row justify-content-center">
+            
+            <div class=" col-lg-6">
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button class="btn  brown-bg dark-blue " type="submit" style="width: 100%;">Send Message</button>
+                </form>
+    
+            </div>
+        </div>
+        
+    </div>
+
+</section>
+{% endblock %}
+{% block footer %}
+<div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+    <!-- Content -->
+    <h6 class="text-uppercase fw-bold mb-4 we-are">
+      <i class="fa fa-gem me-3 text-secondary we-are"></i>{{ instituation.name }}
+    </h6>
+    <p class="we-are">
+        {{ instituation.mission }}
+    </p>
+  </div>
+{% endblock %}

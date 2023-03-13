@@ -1,0 +1,83 @@
+{% extends 'education/admin/admin_navbar.html' %}
+{% load static %}
+{% block title %} Admin Panel {% endblock %}
+{% block css %}
+{% endblock %}
+{% block body %}
+<section>
+    <div class="container">
+        <div class="row p-5 justify-content-center">
+            <div class="">
+                <h2 class="brown-bg p-1 dark-blue col-md-6 mb-5">{{ object.name}} Course Information</h2>
+                <div class="row">
+                    <div class="col-md-3">
+                        <p class=" p-1 dark-blue fw-bold  hed-color ">Course Title</p>
+                    </div>
+                    <div class="col-md-8">
+                        <p class=" p-1 dark-blue col-md-8">{{ object.name }}</p>
+                        
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <p class=" p-1 dark-blue fw-bold  hed-color "> Course Content Description</p>
+                    </div>
+                    <div class="col-md-8">
+                        <p class=" p-1 dark-blue col-md-8">{{object.description}}</p>
+                        
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <p class=" p-1 dark-blue fw-bold  hed-color "> Start Date</p>
+                    </div>
+                    <div class="col-md-8">
+                        <p class=" p-1 dark-blue col-md-8">{{ object.start_date }}</p>
+                        
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <p class=" p-1 dark-blue fw-bold  hed-color "> End Date</p>
+                    </div>
+                    <div class="col-md-8">
+                        <p class=" p-1 dark-blue col-md-8">{{object.end_date }}</p>
+                        
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <p class=" p-1 dark-blue fw-bold  hed-color "> Course Teacher</p>
+                    </div>
+                    <div class="col-md-8">
+                        <a href="{% url 'teacher-detail' object.teacher.id%}">
+                            <p class=" p-1 dark-blue col-md-8">{{ object.teacher.full_name }}</p>
+                        </a>  
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <p class=" p-1 dark-blue fw-bold  hed-color "> Course Students</p>
+                    </div>
+                    <div class="col-md-8">
+                        <ul>
+                            {% for student in object.students.all %}
+                                <li>
+                                    <a href="{% url 'student-detail' student.id %}">
+                                            {{ student.full_name }}
+                                        </a>
+                                    
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                <a class="btn btn-outline-danger dark-blue" href="{% url 'course-delete' course.id %}" data-mdb-toggle="tooltip" title="Remove">delete </a>
+                    <a class="btn brown-bg dark-blue" href="" role="button">Update</a>
+                    <a href="{% url 'add_student_to_course' course.id %}" class="btn btn-primary">Add Student</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

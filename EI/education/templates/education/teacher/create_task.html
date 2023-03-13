@@ -1,0 +1,16 @@
+{% extends 'education/teacher/teacher_navbar.html' %}
+
+{% block body %}
+    <div class="container p-4">
+        <div style="width:50%; margin: 0 auto;">
+            <h1>Create Task for {{ course.name }}</h1>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn brown-bg dark-blue">Create Task</button>
+            </form>
+
+        </div>
+
+    </div>
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends 'education/admin/admin_navbar.html' %}
+{% load static %}
+{% block title %} Addin student{% endblock %}
+{% block css %}
+{% endblock %}
+{% block body %}
+
+<div class="container">
+    <form method="POST" enctype="multipart/form-data"> 
+        {% csrf_token %}
+        <br>
+        <h3 class="text-center text-success"><u>Adding New Student</u></h3>
+    <div class="row mt-4">
+        <div class="form-group col-md-6 " style="margin: 0 auto;">
+            <label><i style="font-weight: bold;">Username</i></label>
+            <input type="text" class="form-control mt-2" name="username" placeholder="Enter Username" required>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="form-group col-md-6" style="margin: 0 auto;">
+            <label><i style="font-weight: bold;">First Name</i></label>
+            <input type="text" class="form-control mt-2" name="first_name" placeholder="Enter First Name" required>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="form-group col-md-6 " style="margin: 0 auto;">
+            <label><i style="font-weight: bold;">Last Name</i></label>
+            <input type="text" class="form-control mt-2" name="last_name" placeholder="Enter Last Name" required>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="form-group col-md-6" style="margin: 0 auto;">
+            <label><i style="font-weight: bold;">Email</i></label>
+            <input type="email" class="form-control mt-2" name="email" placeholder="Enter Email" required>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="form-group col-md-6"style="margin: 0 auto;">
+            <label><i style="font-weight: bold;">Password</i></label>
+            <input type="password" class="form-control mt-2" name="password" placeholder="Enter Password" required>
+        </div>
+    </div>
+        <div class="row mt-4">
+        <div class="form-group col-md-6 " style="margin: 0 auto;">
+            <label><i style="font-weight: bold;">Confirm Password</i></label>
+            <input type="password" class="form-control mt-2" name="confirm_password" placeholder="Confirm Password" required>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-outline-success mt-4" style="display:block; margin: 0 auto; ">Add Student</button>
+</div>
+</form>
+{% endblock %}
+{% block js %}
+
+<script>
+    {% if alert %}
+        alert("Registration Successfull.") document.location = "/student_login"
+    {% endif %}
+</script>
+{% endblock %}
+

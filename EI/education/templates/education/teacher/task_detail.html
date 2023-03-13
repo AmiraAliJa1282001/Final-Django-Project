@@ -1,0 +1,41 @@
+{% extends 'education/teacher/teacher_navbar.html' %}
+
+{% block body %}
+ <section>
+    <div class="container p-5">
+        <h1>{{ object.description }}</h1>
+        <p>Deadline: {{ object.deadline }}</p>
+    
+        {% if object.attachment %}
+            <p>Attachment: <a href="{{ object.attachment.url }}">{{ object.attachment.name }}</a></p>
+        {% endif %}
+    
+        <h2>Submissions:</h2>
+        {% for submission in submissions %}
+            <div class="card p-3 m-2 ">
+                <p>{{ submission.student.full_name }} submitted a file  {{ submission.created_at }}</p>
+                {% if submission.file %}
+                    <p>File: <a href="{{ submission.file.url }}">{{ submission.file.name }}</a></p>
+                    {% if user.is_teacher %}
+                        <form action="{% url 'grade_submission' submission.pk %}" method="post">
+                            {% csrf_token %}
+                            <label for="grade">Grade:</label>
+                            <input type="number" name="grade" id="grade" value="{{ submission.grade }}">
+                            <input type="submit" value="Submit Grade">
+                        </form>
+                    {% endif %}
+                {% else %}
+                    <p>No file submitted yet</p>
+                {% endif %}
+            </div>
+        {% empty %}
+            <p>No submissions yet</p>
+        {% endfor %}
+        <div>
+            <a href="{% url 'task_delete' object.id %}" class="btn btn-outline-danger">Delete</a>
+            <a href="{% url 'task_edit' object.id %}" class="btn brown-bg dark-blue">Edit</a>
+            <a href="{% url 'teacher_course_detail' object.course.id %}" class="btn brown-bg dark-blue">back</a>
+        </div>
+    </div>
+ </section>
+{% endblock %}

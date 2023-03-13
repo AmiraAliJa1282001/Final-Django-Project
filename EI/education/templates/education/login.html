@@ -1,0 +1,78 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.7.1/css/buttons.dataTables.min.css">
+    <link rel="stylesheet" href="{% static 'landingPage/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>{% block title %} {% endblock %}</title>
+    {% block css %}
+    {% endblock %}
+  </head>
+  <body>
+    <!-- Section: Design Block -->
+<section class="" >
+    
+    <div class="px-4 py-5 px-md-5 text-center text-lg-start vh-100" style="background-color: hsl(0, 0%, 96%)">
+      <div class="container">
+        <div class="row gx-lg-5 align-items-center justify-content-center">
+          <div class="col-lg-6 mb-5 mb-lg-0">
+            <h1 class="my-5 display-3 fw-bold ls-tight dark-blue">
+              The best offer <br />
+              <span class="hed-color">for your business</span>
+            </h1>
+            <p style="color: hsl(213, 7%, 29%)">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Eveniet, itaque accusantium odio, soluta, corrupti aliquam
+              quibusdam tempora at cupiditate quis eum maiores libero
+              veritatis? Dicta facilis sint aliquid ipsum atque?
+            </p>
+            <br>
+            <a href="/" class="btn hed-color mb-4">Back Home</a>
+          </div>
+  
+          <div class="col-lg-6 mb-5 mb-lg-0">
+            <div class="card">
+              <div class="card-body py-5 px-md-5">
+                <form method="POST">{% csrf_token %}
+                  <!-- 2 column grid layout with text inputs for the first and last names -->
+                  <h2 class="fw-bold mb-2 text-uppercase text-center dark-blue">Login</h2>
+                  <p class=" mb-5 text-center dark-blue">Please enter your login and password!</p>
+                  <!-- Email input -->
+                  <div class="form-outline mb-4">
+                    <label class="form-label" for="form3Example3" >username</label>
+                    <input type="text" id="form3Example3" class="form-control" name="username" required/>
+                    
+                  </div>
+  
+                  <!-- Password input -->
+                  <div class="form-outline mb-4">
+                    
+                    <label class="form-label" for="form3Example4">Password</label>
+                    <input type="password" id="form3Example4" class="form-control" name="password" required/>
+                  </div>
+  
+                 
+  
+                  <!-- Submit button -->
+                  <button type="submit" class="btn brown-bg dark-blue mb-4">
+                    Log in
+                  </button>
+                  
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Jumbotron -->
+  </section>
+  <!-- Section: Design Block -->
+  </body>

@@ -1,0 +1,31 @@
+{% extends 'basic.html' %}
+{% load static %}
+{% block title %} Educational Instituation {% endblock %}
+{% block css %}
+{% endblock %}
+{% block body %}
+<section class="p-5 section-bg" id="about-us">
+    <div class="container">
+        <div class="row about-us-content">
+            <div class="col-lg-6 ">
+                <div class="vission">
+                    <h2 class="dark-blue display-5 fw-bold ">{{ object.title }} Program</h2>
+                    <p class="dark-blue p-3 text-justify">{{ object.description }}
+                        <br>
+                        <br>
+                        <a class="btn brown-bg btn-lg dark-blue" href="/#contact-us" role="button">Get In Touch</a>
+                    </p>
+                    
+                </div>
+            </div>
+            <div class="col-lg-6  ">
+                <div class="mission">
+                    <div class="about-us-image">
+                        <img class="img-fluid" src="{{object.image.url}}" alt="" srcset="" width="100%">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
